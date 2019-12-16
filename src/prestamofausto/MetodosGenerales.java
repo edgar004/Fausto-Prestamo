@@ -173,6 +173,27 @@ public class MetodosGenerales {
         
     }
     
+    
+    public void modificarPrestamos (String ruta,String id,String dato){
+        try{
+            FileReader leer = new FileReader(ruta);
+        BufferedReader b=new  BufferedReader(leer);
+        String texto=b.readLine();
+        FileWriter escribir = new FileWriter(ruta);
+        while(texto!=null){
+            if(id.equals(texto.split("~")[0])){
+                escribir.write(dato+"\r\n");
+            }else{
+                escribir.write(texto+"\r\n");
+            }
+            texto=b.readLine();
+        }
+        escribir.close();
+        }catch (IOException ex) {
+        }
+        
+    }
+    
      
     
     public ArrayList<String> LlenarTabla (String ruta){
@@ -238,14 +259,14 @@ public class MetodosGenerales {
 //        }
 //    }
     
-    public ArrayList<String> LlenarTablaRangoFecha (Date desde,Date hasta){
+    public ArrayList<String> LlenarTablaRangoFecha (String ruta,Date desde,Date hasta,int posicionFecha){
         ArrayList<String> vector = new ArrayList();
         try {
-            FileReader leer = new FileReader("Cobros.txt");
+            FileReader leer = new FileReader(ruta);
             BufferedReader b = new BufferedReader(leer); 
             String linea=b.readLine();
             while(linea!=null){
-                Date fecha = new Date(linea.split("~")[1]);
+                Date fecha = new Date(linea.split("~")[posicionFecha]);
                 if((fecha.after(desde) || fecha.equals(desde)  && (fecha.before(hasta) || fecha.equals(hasta) )  )){
                 vector.add(linea);
 
