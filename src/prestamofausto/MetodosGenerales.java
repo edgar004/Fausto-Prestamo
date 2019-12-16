@@ -5,6 +5,9 @@
  */
 package prestamofausto;
 
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -51,7 +54,7 @@ public class MetodosGenerales {
             FileWriter guardar = new FileWriter(ruta,true);
             guardar.write(dato+"\r\n");
             guardar.close();
-            if(ruta.equals("Cobros.txt")==false){
+            if(ruta.equals("Prestamos.txt")==false &&  ruta.equals("Cuotas_Prestamos.txt")==false &&  ruta.equals("Detalles_Cobros.txt")==false ){
               JOptionPane.showMessageDialog(null,"Se ha registrado correctamente.");
    
             }
@@ -84,6 +87,30 @@ public class MetodosGenerales {
         
           return "no";
     }
+    
+    
+    public String verificarCuotaTrue(String id_prestamo,String numero_cuota){
+        
+        try {
+            FileReader leer = new FileReader("Cuotas_Prestamos.txt");
+            BufferedReader b= new BufferedReader(leer);
+            String dato=b.readLine();
+            while(dato!=null){
+                if(dato.split("~")[0].equals(id_prestamo) && dato.split("~")[1].equals("numero_cuota")  ){
+                    return dato;
+                }
+                dato=b.readLine();
+            }
+            leer.close();
+            b.close();
+        } catch (IOException ex) {
+        }
+        
+          return "no";
+        
+    }
+    
+    
     public String VerificarCobrosFalse(String idCli){
         try {
             FileReader leer = new FileReader("Cobros.txt");
@@ -98,7 +125,6 @@ public class MetodosGenerales {
             leer.close();
             b.close();
         } catch (IOException ex) {
-//             JOptionPane.showMessageDialog(null,"El archivo no existe","Error",JOptionPane.ERROR_MESSAGE);
         }
         
           return "no";
@@ -138,7 +164,9 @@ public class MetodosGenerales {
             texto=b.readLine();
         }
         escribir.close();
-        JOptionPane.showMessageDialog(null,"Se ha modificado correctamente.");
+        if(ruta.equals("Cuotas_Prestamos.txt")==false){
+         JOptionPane.showMessageDialog(null,"Se ha modificado correctamente.");
+        }
 
         }catch (IOException ex) {
         }
@@ -214,7 +242,7 @@ public class MetodosGenerales {
         ArrayList<String> vector = new ArrayList();
         try {
             FileReader leer = new FileReader("Cobros.txt");
-            BufferedReader b = new BufferedReader(leer);
+            BufferedReader b = new BufferedReader(leer); 
             String linea=b.readLine();
             while(linea!=null){
                 Date fecha = new Date(linea.split("~")[1]);
@@ -364,70 +392,44 @@ public class MetodosGenerales {
         
         
     }
+     
     
-    public String ultimaFechaCobro (String ruta){
-        String fecha ="no";
-        try {
-            Date fechaUltima=null;
-            FileReader leer = new FileReader(ruta);
-            BufferedReader b= new BufferedReader(leer);
-            String dato=b.readLine();
-            
-            while(dato!=null){
-                if(fechaUltima==null){
-                    fechaUltima = new Date(dato.split("~")[1]);
-                }
-                Date fechaArchivo = new Date(dato.split("~")[1]);
-                
-                if(dato.split("~")[5].equals("false")  && (fechaArchivo.after(fechaUltima) || fechaArchivo.equals(fechaUltima) ) ){
-                    fechaUltima = fechaArchivo;
-                    fecha =dato.split("~")[1]; 
-                }
-                dato=b.readLine();
-            }
-            leer.close();
-            b.close();
-        } catch (IOException ex) {
-             JOptionPane.showMessageDialog(null,"El archivo no existe","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-          return fecha;
-    } 
+   
     
-//      public Paragraph  encabezado (String texto){
-//          Paragraph p = new Paragraph();
-//          Chunk  c = new Chunk();
-//          p.setAlignment(Element.ALIGN_CENTER);
-//          c.append(texto);
-//          p.add(c);
-//          return p;
-//          
-//      }
-//      
-//      
-//      public Paragraph  informacion (String texto){
-//          Paragraph p = new Paragraph();
-//          Chunk  c = new Chunk();
-//          c.append(texto);
-//          p.add(c);
-//          return p;
-//          
-//      }
-//      
-//      
-//      public Paragraph  pie (String texto){
-//          Paragraph p = new Paragraph();
-//          Chunk  c = new Chunk();
-//          p.setAlignment(Element.ALIGN_BOTTOM);
-//          c.append(texto);
-//          p.add(c);
-//          return p;
-//          
-//      }
-//         
-//    
-//    
-//    
+      public Paragraph  encabezado (String texto){
+          Paragraph p = new Paragraph();
+          Chunk  c = new Chunk();
+          p.setAlignment(Element.ALIGN_CENTER);
+          c.append(texto);
+          p.add(c);
+          return p;
+          
+      }
+      
+      
+      public Paragraph  informacion (String texto){
+          Paragraph p = new Paragraph();
+          Chunk  c = new Chunk();
+          c.append(texto);
+          p.add(c);
+          return p;
+          
+      }
+      
+      
+      public Paragraph  pie (String texto){
+          Paragraph p = new Paragraph();
+          Chunk  c = new Chunk();
+          p.setAlignment(Element.ALIGN_BOTTOM);
+          c.append(texto);
+          p.add(c);
+          return p;
+          
+      }
+         
+    
+    
+    
     
     
     
