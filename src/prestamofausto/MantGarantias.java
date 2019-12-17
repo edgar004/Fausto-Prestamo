@@ -5,6 +5,7 @@
  */
 package prestamofausto;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +19,10 @@ public class MantGarantias extends javax.swing.JFrame {
      * Creates new form MantGarantias
      */
     public MantGarantias() {
-        initComponents();
+        initComponents();setLocationRelativeTo(null);
+             setResizable(false);
+         this.getContentPane().setBackground(Color.WHITE);
+        
     }
 
     /**
@@ -38,18 +42,25 @@ public class MantGarantias extends javax.swing.JFrame {
         descripcion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 153, 255));
         jLabel1.setText("MANTENIMIENTO FIADOR");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 153, 255));
         jLabel17.setText("ID:");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         mensaje.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        mensaje.setForeground(new java.awt.Color(0, 153, 255));
         mensaje.setText("CREANDO");
+        getContentPane().add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         id.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         id.addActionListener(new java.awt.event.ActionListener() {
@@ -65,81 +76,49 @@ public class MantGarantias extends javax.swing.JFrame {
                 idKeyReleased(evt);
             }
         });
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 140, -1));
 
         jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 153, 255));
         jLabel18.setText("Descripción");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         descripcion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 190, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 153, 255));
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 130, 50));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 153, 255));
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 140, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(11, 11, 11)
-                            .addComponent(jLabel17)
-                            .addGap(18, 18, 18)
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(138, 138, 138)
-                                .addComponent(mensaje))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(jButton1)
-                        .addGap(118, 118, 118)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(mensaje)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
+        jButton3.setBackground(new java.awt.Color(51, 153, 255));
+        jButton3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("VOLVER");
+        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 90, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,6 +174,11 @@ public class MantGarantias extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new MenuPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,6 +219,7 @@ public class MantGarantias extends javax.swing.JFrame {
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
