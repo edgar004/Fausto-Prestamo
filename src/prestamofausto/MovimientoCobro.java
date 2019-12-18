@@ -62,12 +62,12 @@ public class MovimientoCobro extends javax.swing.JFrame {
         mensaje.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         mensaje.setForeground(new java.awt.Color(51, 153, 255));
         mensaje.setText("CREANDO");
-        getContentPane().add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+        getContentPane().add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(51, 153, 255));
         jLabel18.setText("ID:");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         Id.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         Id.addActionListener(new java.awt.event.ActionListener() {
@@ -80,18 +80,18 @@ public class MovimientoCobro extends javax.swing.JFrame {
                 IdKeyReleased(evt);
             }
         });
-        getContentPane().add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 150, -1));
+        getContentPane().add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 150, -1));
 
         jLabel19.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(51, 153, 255));
         jLabel19.setText("Fecha:");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 222, -1));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 222, -1));
 
         jLabel20.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(51, 153, 255));
         jLabel20.setText("Cliente:");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         Cliente.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         Cliente.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -99,12 +99,12 @@ public class MovimientoCobro extends javax.swing.JFrame {
                 ClienteKeyReleased(evt);
             }
         });
-        getContentPane().add(Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 220, -1));
+        getContentPane().add(Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 220, -1));
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 153, 255));
         jLabel21.setText("Valor:");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         Valor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         Valor.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +112,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
                 ValorActionPerformed(evt);
             }
         });
-        getContentPane().add(Valor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 223, -1));
+        getContentPane().add(Valor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 223, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -123,7 +123,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 130, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 130, 40));
 
         cuotasCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cuotasCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -151,11 +151,11 @@ public class MovimientoCobro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(cuotasCliente);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 600, 170));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 600, 170));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel1.setText("MANTENIMIENTO USUARIO");
+        jLabel1.setText("Movimiento de cobros");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(51, 153, 255));
@@ -229,7 +229,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
               
         for (int i = 0; i <vector.size(); i++) {
              Date fechaCuota = new Date(vector.get(i).split("~")[3]);
-            if(fechaActual.after(fechaCuota)){
+            if( (fechaActual.after(fechaCuota) || fechaActual.equals(fechaCuota)) && vector.get(i).split("~")[7].equals("false")){
                 datos[0]=vector.get(i).split("~")[0];
                 datos[1]=vector.get(i).split("~")[1];
                 datos[2]=vector.get(i).split("~")[3];
@@ -269,23 +269,23 @@ public class MovimientoCobro extends javax.swing.JFrame {
                         if(abono>=ValorCuota){
                             valorCuota = ValorCuota.toString();
                             abono-=ValorCuota;
-                         int secuencia = i+1;
+                      
+                        }else{
+                           valorCuota = String.valueOf(abono);
+                            abono=0.0;
+                        }
+                           int secuencia = i+1;
                         general.registrar("Detalles_Cobros.txt",Id.getText()+"~"+secuencia+"~"+cuotasCliente.getValueAt(i, 0).toString()+"~"+cuotasCliente.getValueAt(i, 1).toString()+"~"+valorCuota+"~"+"0"+"~"+"0"+"~"+"0");
                            
                         String validarCuota=general.verificarCuotaTrue(cuotasCliente.getValueAt(i, 0).toString(),cuotasCliente.getValueAt(i, 1).toString());
-                            System.out.println(validarCuota);
                         if(validarCuota.equals("no")==false){
-                            validarCuota = validarCuota.split("~")[0]+"~"+validarCuota.split("~")[1]+"~"+validarCuota.split("~")[2]+"~"+validarCuota.split("~")[3]+"~"+validarCuota.split("~")[4]+"~"+validarCuota.split("~")[5]+"~"+validarCuota.split("~")[6]+"~"+"false"; 
-                            System.out.println(validarCuota);
+                            validarCuota = validarCuota.split("~")[0]+"~"+validarCuota.split("~")[1]+"~"+validarCuota.split("~")[2]+"~"+validarCuota.split("~")[3]+"~"+validarCuota.split("~")[4]+"~"+validarCuota.split("~")[5]+"~"+validarCuota.split("~")[6]+"~"+"true"; 
                             general.modificar("Cuotas_Prestamos.txt", validarCuota.split("~")[0], validarCuota);
                         
                         }
-                          if(abono<=0.0){
+                        
+                         if(abono<=0.0){
                             break;
-                        }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Sobran: "+abono);
-                             break;
                         }
                       
                        

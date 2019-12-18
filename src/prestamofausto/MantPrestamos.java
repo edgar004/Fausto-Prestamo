@@ -12,6 +12,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -95,26 +96,26 @@ public class MantPrestamos extends javax.swing.JFrame {
                 idKeyReleased(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 142, -1));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 142, -1));
 
         jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(51, 153, 255));
         jLabel18.setText("Id cliente");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-        getContentPane().add(id_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 142, -1));
+        getContentPane().add(id_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 142, -1));
 
         jLabel19.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(51, 153, 255));
         jLabel19.setText("Id fiador");
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
-        getContentPane().add(id_fiador, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 142, -1));
+        getContentPane().add(id_fiador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 142, -1));
 
         jLabel20.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(51, 153, 255));
         jLabel20.setText("Estado");
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
-        getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 130, -1));
-        getContentPane().add(fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 120, 20));
+        getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 130, -1));
+        getContentPane().add(fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 120, 30));
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 153, 255));
@@ -136,49 +137,68 @@ public class MantPrestamos extends javax.swing.JFrame {
                 plazoKeyReleased(evt);
             }
         });
-        getContentPane().add(plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 142, -1));
+        getContentPane().add(plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 142, -1));
 
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 153, 255));
         jLabel23.setText("Fecha final");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
-        getContentPane().add(fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 167, -1));
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        getContentPane().add(fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 140, -1));
 
         jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(51, 153, 255));
         jLabel24.setText("Tipo garantia");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
-        getContentPane().add(garantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 142, -1));
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        getContentPane().add(garantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 142, 30));
 
         jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(51, 153, 255));
         jLabel25.setText("Monto");
         getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, 30));
-        getContentPane().add(monto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 142, 20));
+
+        monto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                montoActionPerformed(evt);
+            }
+        });
+        monto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                montoKeyReleased(evt);
+            }
+        });
+        getContentPane().add(monto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 142, 30));
 
         jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(51, 153, 255));
         jLabel26.setText("Balance");
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, 30));
-        getContentPane().add(balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 142, 20));
+        getContentPane().add(balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 142, 20));
 
         jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(51, 153, 255));
         jLabel27.setText("Taza");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, 30));
-        getContentPane().add(taza, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 142, 20));
+
+        taza.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tazaKeyReleased(evt);
+            }
+        });
+        getContentPane().add(taza, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 142, 20));
 
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(51, 153, 255));
         jLabel28.setText("Cuota");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, -1, 30));
-        getContentPane().add(cuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 142, 20));
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, 30));
+
+        cuota.setEditable(false);
+        getContentPane().add(cuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 142, 30));
 
         jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(51, 153, 255));
         jLabel29.setText("Foto");
-        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, 30));
-        getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 142, 20));
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, 30));
+        getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 160, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 153, 255));
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -272,15 +292,24 @@ public class MantPrestamos extends javax.swing.JFrame {
        Calendar calendario = Calendar.getInstance();
        Date fecha = fecha_inicio.getDate();
        calendario.setTime(fecha);
-       int valor_interes = ( Integer.parseInt(monto.getText()) * Integer.parseInt(taza.getText()) / 100 );
-       int valorCuota  = ( Integer.parseInt(monto.getText())  / Integer.parseInt(plazo.getText()) )  + valor_interes;
-       int valorAutomizacion = Integer.parseInt(monto.getText()) / Integer.parseInt(plazo.getText());
+       
+       DecimalFormat df = new DecimalFormat("#.00");
+       
+       double montoPrestamo = Double.parseDouble(monto.getText());
+       double valor_interes = ( montoPrestamo * Integer.parseInt(taza.getText()) / 100 );
+       double valorCuota  = ( Integer.parseInt(monto.getText())  / Integer.parseInt(plazo.getText()) )  + valor_interes;
+       double valorAutomizacion = valorCuota - valor_interes;
        
       for(int i=1;i<=plazoInteger;i++){
-        String fechaCuota = fomato_fecha.format(calendario.getTime());
-        String datosCuotas =id.getText()+"~"+String.valueOf(i)+"~"+id_cliente.getText()+"~"+fechaCuota+"~"+valorCuota+"~"+valorAutomizacion+"~"+valor_interes+"~"+"true";
-        metodos.registrar("Cuotas_Prestamos.txt", datosCuotas);
+         String fechaCuota = fomato_fecha.format(calendario.getTime());
+         String datosCuotas =id.getText()+"~"+String.valueOf(i)+"~"+id_cliente.getText()+"~"+fechaCuota+"~"+df.format(valorCuota)+"~"+df.format(valorAutomizacion)+"~"+df.format(valor_interes)+"~"+"false";
+         metodos.registrar("Cuotas_Prestamos.txt", datosCuotas);
          calendario.add(calendario.MONTH, 1);
+         
+         montoPrestamo -=valorAutomizacion;
+         valor_interes = Math.abs( (montoPrestamo * Integer.parseInt(taza.getText()) / 100 ));
+         valorAutomizacion = valorCuota - valor_interes;
+         
          
 //         try{
 //                FileOutputStream archivo = new   FileOutputStream (id.getText()+i+".pdf");
@@ -314,6 +343,29 @@ public class MantPrestamos extends javax.swing.JFrame {
         new MenuPrincipal().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void montoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_montoActionPerformed
+
+    private void montoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_montoKeyReleased
+      
+       
+    }//GEN-LAST:event_montoKeyReleased
+
+    private void tazaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tazaKeyReleased
+        try{
+            if(taza.getText().equals("")==false){
+            int valor_interes = ( Integer.parseInt(monto.getText()) * Integer.parseInt(taza.getText()) / 100 );
+            int valorCuota  = ( Integer.parseInt(monto.getText())  / Integer.parseInt(plazo.getText()) )  + valor_interes;
+                cuota.setText(String.valueOf(valorCuota));
+        }
+            
+        }catch(Exception e){
+        }
+        
+        
+    }//GEN-LAST:event_tazaKeyReleased
 
     
     

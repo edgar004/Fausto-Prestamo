@@ -142,11 +142,14 @@ public class ProcesosCobros extends javax.swing.JFrame {
             vector=generales.LlenarTablaRangoFecha("Cobros_prestamos.txt",fechaDesde,fechaHasta,1);
             String datos [ ] = new String [4];
             for (int i = 0; i <vector.size(); i++) {
+                if(vector.get(i).toString().split("~")[5].equals("false")){
                 datos[0]=vector.get(i).toString().split("~")[0];
                 datos[1]=vector.get(i).toString().split("~")[1];
                 datos[2]=vector.get(i).toString().split("~")[2];
                 datos[3]=vector.get(i).toString().split("~")[3];
                 modelo.addRow(datos);
+                }
+               
 
             }
         }
@@ -172,7 +175,6 @@ public class ProcesosCobros extends javax.swing.JFrame {
                          statusPrestamo="true";
                      }
                      
-                     System.out.println(balancePrestamo);
                      prestamo=prestamo.split("~")[0]+"~"+prestamo.split("~")[1]+"~"+prestamo.split("~")[2]+"~"+statusPrestamo+"~"+prestamo.split("~")[4]+"~"+prestamo.split("~")[5]+"~"+
                                 prestamo.split("~")[6]+"~"+prestamo.split("~")[7]+"~"+prestamo.split("~")[8]+"~"+balancePrestamo+"~"+prestamo.split("~")[10]+"~"+prestamo.split("~")[11]+"~"+prestamo.split("~")[12];
                         generales.modificarPrestamos("Prestamos.txt",prestamo.split("~")[0], prestamo);
