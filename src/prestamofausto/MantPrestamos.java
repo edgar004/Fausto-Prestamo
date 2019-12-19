@@ -7,13 +7,13 @@ package prestamofausto;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -48,9 +48,9 @@ public class MantPrestamos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
+        nomCli = new javax.swing.JLabel();
         id_cliente = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
+        nomFia = new javax.swing.JLabel();
         id_fiador = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         estado = new javax.swing.JCheckBox();
@@ -73,10 +73,11 @@ public class MantPrestamos extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         foto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        prestamosTabla = new javax.swing.JTable();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,48 +85,60 @@ public class MantPrestamos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setText("MANTENIMIENTO PRESTAMO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(51, 153, 255));
         jLabel17.setText("ID:");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         id.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 idKeyReleased(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 142, -1));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 142, -1));
 
-        jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel18.setText("Id cliente");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-        getContentPane().add(id_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 142, -1));
+        nomCli.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        nomCli.setForeground(new java.awt.Color(51, 153, 255));
+        getContentPane().add(nomCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel19.setText("Id fiador");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
-        getContentPane().add(id_fiador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 142, -1));
+        id_cliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                id_clienteKeyReleased(evt);
+            }
+        });
+        getContentPane().add(id_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 142, -1));
+
+        nomFia.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        nomFia.setForeground(new java.awt.Color(51, 153, 255));
+        getContentPane().add(nomFia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
+
+        id_fiador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                id_fiadorKeyReleased(evt);
+            }
+        });
+        getContentPane().add(id_fiador, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 142, -1));
 
         jLabel20.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(51, 153, 255));
         jLabel20.setText("Estado");
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
-        getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 130, -1));
-        getContentPane().add(fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 120, 30));
+
+        estado.setEnabled(false);
+        getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 130, -1));
+        getContentPane().add(fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 130, 30));
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 153, 255));
         jLabel21.setText("Plazo");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 153, 255));
         jLabel22.setText("Fecha inicio");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         plazo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,24 +150,24 @@ public class MantPrestamos extends javax.swing.JFrame {
                 plazoKeyReleased(evt);
             }
         });
-        getContentPane().add(plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 142, -1));
+        getContentPane().add(plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 142, -1));
 
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 153, 255));
         jLabel23.setText("Fecha final");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
-        getContentPane().add(fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 140, -1));
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+        getContentPane().add(fecha_final, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 140, -1));
 
         jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(51, 153, 255));
         jLabel24.setText("Tipo garantia");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
-        getContentPane().add(garantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 142, 30));
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        getContentPane().add(garantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 142, 30));
 
         jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(51, 153, 255));
         jLabel25.setText("Monto");
-        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, 30));
+        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, 30));
 
         monto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,39 +179,39 @@ public class MantPrestamos extends javax.swing.JFrame {
                 montoKeyReleased(evt);
             }
         });
-        getContentPane().add(monto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 142, 30));
+        getContentPane().add(monto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, 142, 30));
 
         jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(51, 153, 255));
         jLabel26.setText("Balance");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, 30));
-        getContentPane().add(balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 142, 20));
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, 30));
+        getContentPane().add(balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, 142, 30));
 
         jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(51, 153, 255));
         jLabel27.setText("Taza");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, 30));
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, -1, 30));
 
         taza.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tazaKeyReleased(evt);
             }
         });
-        getContentPane().add(taza, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 142, 20));
+        getContentPane().add(taza, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 142, 30));
 
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(51, 153, 255));
         jLabel28.setText("Cuota");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, 30));
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, -1, 30));
 
         cuota.setEditable(false);
-        getContentPane().add(cuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 142, 30));
+        getContentPane().add(cuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 142, 30));
 
         jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(51, 153, 255));
         jLabel29.setText("Foto");
-        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, 30));
-        getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 160, 30));
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, 30));
+        getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 140, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 153, 255));
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -211,37 +224,6 @@ public class MantPrestamos extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 150, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Id_prestamo_cuota", "Num_cuota", "Fecha cuota", "Valor cuota", "Valor amortizacion", "Valor interes"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 710, 250));
-
-        jButton2.setBackground(new java.awt.Color(51, 153, 255));
-        jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 150, 50));
-
         jButton3.setBackground(new java.awt.Color(51, 153, 255));
         jButton3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -253,6 +235,36 @@ public class MantPrestamos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 130, 60));
+
+        prestamosTabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id_prestamo_cuota", "Num_cuota", "Id Cuota", "Fecha cuota", "Valor cuota", "Valor amortizacion", "Valor interes", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(prestamosTabla);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 710, 250));
+
+        jLabel30.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel30.setText("Id cliente");
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel31.setText("Id fiador");
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,12 +285,8 @@ public class MantPrestamos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_plazoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      MetodosGenerales metodos = new MetodosGenerales ();
+        MetodosGenerales metodos = new MetodosGenerales ();
       SimpleDateFormat fomato_fecha = new SimpleDateFormat("MM/dd/YYYY");
       String fecha_Inicio = fomato_fecha.format(fecha_inicio.getCalendar().getTime());
       String fecha_Final = fomato_fecha.format(fecha_final.getCalendar().getTime());
@@ -300,43 +308,90 @@ public class MantPrestamos extends javax.swing.JFrame {
        double valorCuota  = ( Integer.parseInt(monto.getText())  / Integer.parseInt(plazo.getText()) )  + valor_interes;
        double valorAutomizacion = valorCuota - valor_interes;
        
+        ArrayList vector = new ArrayList();
+       
+       
       for(int i=1;i<=plazoInteger;i++){
          String fechaCuota = fomato_fecha.format(calendario.getTime());
-         String datosCuotas =id.getText()+"~"+String.valueOf(i)+"~"+id_cliente.getText()+"~"+fechaCuota+"~"+df.format(valorCuota)+"~"+df.format(valorAutomizacion)+"~"+df.format(valor_interes)+"~"+"false";
+         String CUOTAS = id.getText()+"~"+String.valueOf(i)+"~"+id_cliente.getText()+"~"+fechaCuota+"~"+df.format(valorCuota)+"~"+df.format(valorAutomizacion)+"~"+df.format(valor_interes)+"~"+"true";
+         String datosCuotas =CUOTAS;
+         vector.add(CUOTAS);
          metodos.registrar("Cuotas_Prestamos.txt", datosCuotas);
          calendario.add(calendario.MONTH, 1);
          
          montoPrestamo -=valorAutomizacion;
-         valor_interes = Math.abs( (montoPrestamo * Integer.parseInt(taza.getText()) / 100 ));
+          valor_interes = Math.abs( (montoPrestamo * Integer.parseInt(taza.getText()) / 100 ));
          valorAutomizacion = valorCuota - valor_interes;
          
-         
-//         try{
-//                FileOutputStream archivo = new   FileOutputStream (id.getText()+i+".pdf");
-//                Document doc = new Document();
-//                PdfWriter.getInstance(doc, archivo);
-//                doc.open();
-//                String contenido="Numero cuota:"+i+" \r\n valor cuota: " + valorCuota;
-//
-//                doc.add(metodos.encabezado("Prestamo en la fecha " + fecha.getDate()));
-//                doc.add(metodos.informacion("infomacion 2 "));
-//                doc.add(metodos.pie("pie"));
-//                doc.add(new Paragraph (contenido));
-//                doc.close();
-//
-//            }catch(FileNotFoundException | DocumentException ex){
-//
-//            }
 
      }
+         
+         try{
+                FileOutputStream archivo = new   FileOutputStream ("cuota prestamos"+id.getText()+".pdf");
+                Document doc = new Document();
+                PdfWriter.getInstance(doc, archivo);
+                doc.open();
+                doc.add(metodos.encabezado("Prestamo Id: " + id.getText() +  "Cliente: " + nomCli.getText()+"\r\n"));
+                
+                doc.add(metodos.informacion("Fecha inicio : " + fecha_Inicio + " Fecha final: " +  fecha_Final+"\r\n"));
+
+                for (Object CuotaPDF : vector) { 
+                doc.add(metodos.informacion("Número cuota: " + CuotaPDF.toString().split("~")[1] + " Fecha cuota: " +  CuotaPDF.toString().split("~")[3]  + "Valor cuota "  + CuotaPDF.toString().split("~")[4]   + " Valor amortizacion "  + CuotaPDF.toString().split("~")[5] + " Valor interes "  + CuotaPDF.toString().split("~")[6]  +"\r\n"));
+               }
+                doc.close();
+
+            }catch(FileNotFoundException | DocumentException ex){
+
+                
+            }
+            limpiarCampos(true);
       
       
       
     }//GEN-LAST:event_jButton1ActionPerformed
 
+       public void limpiarCampos(boolean borraId){
+        if(borraId){
+          id.setText("");
+        }
+        id_cliente.setText("");
+        id_fiador.setText("");
+        plazo.setText("");
+        fecha_inicio.setDate(null);
+        fecha_final.setDate(null);
+        garantia.setText("");
+        monto.setText("");
+        balance.setText("");
+        taza.setText("");
+        cuota.setText("");
+        foto.setText("");
+        nomCli.setText("");
+        nomFia.setText("");
+    }
+       
     private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
-    
-
+    MetodosGenerales metodos = new MetodosGenerales(); 
+     String datos = metodos.validarID("Prestamos.txt", id.getText());
+     if(datos.equals("no")){
+         limpiarCampos(false);
+     }else{
+        id_cliente.setText(datos.split("~")[1]);
+        id_fiador.setText(datos.split("~")[2]);
+        Date fecha_Inicio = new Date(datos.split("~")[4]); 
+        fecha_inicio.setDate(fecha_Inicio);
+        plazo.setText(datos.split("~")[5]);
+        Date fecha_Final = new Date(datos.split("~")[6]); 
+        fecha_final.setDate(fecha_Final);
+        garantia.setText(datos.split("~")[7]);
+        monto.setText(datos.split("~")[8]);
+        balance.setText(datos.split("~")[9]);
+        taza.setText(datos.split("~")[10]);
+        cuota.setText(datos.split("~")[11]);
+        foto.setText(datos.split("~")[12]);
+     }
+         metodos.LlenarTablaModel("Cuotas_Prestamos.txt",prestamosTabla,8,id.getText(),0);
+     
+     
     }//GEN-LAST:event_idKeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -349,12 +404,20 @@ public class MantPrestamos extends javax.swing.JFrame {
     }//GEN-LAST:event_montoActionPerformed
 
     private void montoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_montoKeyReleased
-      
+       if(monto.getText().equals("")){
+           balance.setText("");
+           taza.setText("");
+           cuota.setText("");
+       }else{
+           balance.setText(monto.getText());
+           if(taza.getText().equals("")==false){
+             calcularCuota();
+           }
+       }      
        
     }//GEN-LAST:event_montoKeyReleased
-
-    private void tazaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tazaKeyReleased
-        try{
+   public void calcularCuota(){
+         try{
             if(taza.getText().equals("")==false){
             int valor_interes = ( Integer.parseInt(monto.getText()) * Integer.parseInt(taza.getText()) / 100 );
             int valorCuota  = ( Integer.parseInt(monto.getText())  / Integer.parseInt(plazo.getText()) )  + valor_interes;
@@ -363,9 +426,30 @@ public class MantPrestamos extends javax.swing.JFrame {
             
         }catch(Exception e){
         }
-        
-        
+   }
+    private void tazaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tazaKeyReleased
+          calcularCuota();
     }//GEN-LAST:event_tazaKeyReleased
+
+    private void id_clienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_clienteKeyReleased
+        MetodosGenerales usuario= new MetodosGenerales();
+        String consulta=usuario.validarID("Clientes.txt", id_cliente.getText());
+        if(consulta.equals("no")){
+            nomCli.setText("cliente no existe");
+        }else{ 
+             nomCli.setText(consulta.split("~")[1]);
+        }
+    }//GEN-LAST:event_id_clienteKeyReleased
+
+    private void id_fiadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_fiadorKeyReleased
+       MetodosGenerales usuario= new MetodosGenerales();
+        String consulta=usuario.validarID("Fiadores.txt", id_fiador.getText());
+        if(consulta.equals("no")){
+            nomFia.setText("fiador no existe");
+        }else{ 
+             nomFia.setText(consulta.split("~")[1]);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_id_fiadorKeyReleased
 
     
     
@@ -416,12 +500,9 @@ public class MantPrestamos extends javax.swing.JFrame {
     private javax.swing.JTextField id_cliente;
     private javax.swing.JTextField id_fiador;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -432,10 +513,14 @@ public class MantPrestamos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField monto;
+    private javax.swing.JLabel nomCli;
+    private javax.swing.JLabel nomFia;
     private javax.swing.JTextField plazo;
+    private javax.swing.JTable prestamosTabla;
     private javax.swing.JTextField taza;
     // End of variables declaration//GEN-END:variables
 }

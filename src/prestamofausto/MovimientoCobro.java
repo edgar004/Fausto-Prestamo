@@ -55,6 +55,9 @@ public class MovimientoCobro extends javax.swing.JFrame {
         cuotasCliente = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        concepto = new javax.swing.JTextArea();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -103,8 +106,8 @@ public class MovimientoCobro extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel21.setText("Valor:");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        jLabel21.setText("Concepto");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         Valor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         Valor.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +173,17 @@ public class MovimientoCobro extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 120, 50));
 
+        concepto.setColumns(20);
+        concepto.setRows(5);
+        jScrollPane2.setViewportView(concepto);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 220, 100));
+
+        jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel22.setText("Valor:");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,7 +193,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
 
     private void IdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyReleased
         MetodosGenerales usuario= new MetodosGenerales();
-        String consulta=usuario.validarID("EncabezadoCuotas.txt", Id.getText());
+        String consulta=usuario.validarID("Cobros_prestamos.txt", Id.getText());
         if(consulta.equals("no")){
             Date fechaHoy = new Date();
             fecha.setDate(fechaHoy);
@@ -229,7 +243,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
               
         for (int i = 0; i <vector.size(); i++) {
              Date fechaCuota = new Date(vector.get(i).split("~")[3]);
-            if( (fechaActual.after(fechaCuota) || fechaActual.equals(fechaCuota)) && vector.get(i).split("~")[7].equals("false")){
+            if( (fechaActual.after(fechaCuota) || fechaActual.equals(fechaCuota)) && vector.get(i).split("~")[7].equals("true")){
                 datos[0]=vector.get(i).split("~")[0];
                 datos[1]=vector.get(i).split("~")[1];
                 datos[2]=vector.get(i).split("~")[3];
@@ -249,7 +263,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(Id.getText().equals("")==false && fecha.getCalendar()!=null && Cliente.getText().equals("")==false && Valor.getText().equals("")==false ){
+        if(Id.getText().equals("")==false && fecha.getCalendar()!=null && Cliente.getText().equals("")==false && Valor.getText().equals("")==false && concepto.getText().equals("")==false  ){
             MetodosGenerales general = new MetodosGenerales ();
             String validar=general.validarID("Cobros_prestamos.txt",Id.getText());
             SimpleDateFormat fomato_fecha = new SimpleDateFormat("MM/dd/YYYY");
@@ -261,7 +275,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
                     return;
                 }
                 
-                general.registrar("Cobros_prestamos.txt",Id.getText()+"~"+fechaCuota+"~"+Cliente.getText()+"~"+Valor.getText()+"~"+"false");
+                general.registrar("Cobros_prestamos.txt",Id.getText()+"~"+fechaCuota+"~"+Cliente.getText()+"~"+Valor.getText()+"~"+concepto.getText()+"~"+"false");
                 Double abono = Double.parseDouble(Valor.getText());
                  for(int i=0;i<cuotasCliente.getRowCount();i++){
                       String valorCuota = "";
@@ -279,7 +293,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
                            
                         String validarCuota=general.verificarCuotaTrue(cuotasCliente.getValueAt(i, 0).toString(),cuotasCliente.getValueAt(i, 1).toString());
                         if(validarCuota.equals("no")==false){
-                            validarCuota = validarCuota.split("~")[0]+"~"+validarCuota.split("~")[1]+"~"+validarCuota.split("~")[2]+"~"+validarCuota.split("~")[3]+"~"+validarCuota.split("~")[4]+"~"+validarCuota.split("~")[5]+"~"+validarCuota.split("~")[6]+"~"+"true"; 
+                            validarCuota = validarCuota.split("~")[0]+"~"+validarCuota.split("~")[1]+"~"+validarCuota.split("~")[2]+"~"+validarCuota.split("~")[3]+"~"+validarCuota.split("~")[4]+"~"+validarCuota.split("~")[5]+"~"+validarCuota.split("~")[6]+"~"+"false"; 
                             general.modificar("Cuotas_Prestamos.txt", validarCuota.split("~")[0], validarCuota);
                         
                         }
@@ -294,8 +308,11 @@ public class MovimientoCobro extends javax.swing.JFrame {
                  
                 Id.setText("");
                 fecha.setDate(null);
+                Date fechaActual = new Date();
+                fecha.setDate(fechaActual);
                 Cliente.setText("");
                 Valor.setText("");
+                concepto.setText("");
                 mensaje.setText("CREANDO");
                 DefaultTableModel  modelo =(DefaultTableModel) cuotasCliente.getModel();
                 modelo.setRowCount(0);
@@ -353,6 +370,7 @@ public class MovimientoCobro extends javax.swing.JFrame {
     private javax.swing.JTextField Cliente;
     private javax.swing.JTextField Id;
     private javax.swing.JTextField Valor;
+    private javax.swing.JTextArea concepto;
     private javax.swing.JTable cuotasCliente;
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton jButton1;
@@ -362,7 +380,9 @@ public class MovimientoCobro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel mensaje;
     // End of variables declaration//GEN-END:variables
 }

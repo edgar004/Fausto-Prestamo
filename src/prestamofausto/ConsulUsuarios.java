@@ -22,6 +22,9 @@ public class ConsulUsuarios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         this.getContentPane().setBackground(Color.WHITE);
+        
+        
+        
         MetodosGenerales metodos = new MetodosGenerales();
         metodos.LlenarTablaModel("Usuarios.txt", usuarios, 5);
        

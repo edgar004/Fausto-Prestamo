@@ -82,7 +82,26 @@ public class MetodosGenerales {
             leer.close();
             b.close();
         } catch (IOException ex) {
-//             JOptionPane.showMessageDialog(null,"El archivo no existe","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+          return "no";
+    }
+    
+    
+     public String CuotaPrestamo(String id,String num_cuota){
+        try {
+            FileReader leer = new FileReader("Cuotas_Prestamos.txt");
+            BufferedReader b= new BufferedReader(leer);
+            String dato=b.readLine();
+            while(dato!=null){
+                if(id.equals(dato.split("~")[0]) && num_cuota.equals(dato.split("~")[1]) ){
+                    return dato;
+                }
+                dato=b.readLine();
+            }
+            leer.close();
+            b.close();
+        } catch (IOException ex) {
         }
         
           return "no";
@@ -96,7 +115,7 @@ public class MetodosGenerales {
             BufferedReader b= new BufferedReader(leer);
             String dato=b.readLine();
             while(dato!=null){
-                if(dato.split("~")[0].equals(id_prestamo) && dato.split("~")[1].equals("numero_cuota")  ){
+                if(dato.split("~")[0].equals(id_prestamo) && numero_cuota.equals(dato.split("~")[1])){
                     return dato;
                 }
                 dato=b.readLine();
@@ -218,11 +237,10 @@ public class MetodosGenerales {
     
     public void  LlenarTablaModel(String ruta,JTable tabla,int ElementosVector){
          DefaultTableModel  modelo =(DefaultTableModel) tabla.getModel();
-         ArrayList vector = new ArrayList();
+         ArrayList vector = this.LlenarTabla(ruta);
          modelo.setRowCount(0);
          tabla.setModel(modelo);
          String datos [ ] = new String [ElementosVector];
-         vector=this.LlenarTabla(ruta);
          
          for (int i = 0; i <vector.size(); i++) {
            for(int j=0;j< ElementosVector; j++){

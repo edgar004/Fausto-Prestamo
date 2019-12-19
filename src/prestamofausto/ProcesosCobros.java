@@ -164,6 +164,25 @@ public class ProcesosCobros extends javax.swing.JFrame {
                 MetodosGenerales generales = new MetodosGenerales();
            
                  for(int i=0;i<tablaCobros.getRowCount();i++){
+                     
+                      ArrayList vector = generales.LlenarTablaCondicion("Detalles_Cobros.txt", 0,tablaCobros.getValueAt(i, 0).toString());
+                      for(int j=0;j<vector.size();j++){
+                          String cuotaPres  = generales.CuotaPrestamo(vector.get(i).toString().split("~")[2], vector.get(i).toString().split("~")[3]);
+                          if(cuotaPres.equals("no")==false){
+                              double valorCuota = Double.parseDouble(cuotaPres.split("~")[4]);
+                              valorCuota -= Double.parseDouble(vector.get(i).toString().split("~")[4]);
+                              String statusCuota="false";
+                              if(valorCuota<=0.0){
+                                  statusCuota="true";
+                              }
+                               cuotaPres = cuotaPres.split("~")[0]+"~"+cuotaPres.split("~")[1]+"~"+cuotaPres.split("~")[2]+"~"+cuotaPres.split("~")[3]+"~"+String.valueOf(valorCuota)+"~"+cuotaPres.split("~")[5]+"~"+cuotaPres.split("~")[6]+"~"+statusCuota;
+                               generales.modificar("Cuotas_Prestamos.txt", cuotaPres.split("~")[0], cuotaPres);
+                          
+                          }
+                      
+                      }
+                      
+                      
                      String detalleCobro = generales.validarCondicion("Detalles_Cobros.txt", tablaCobros.getValueAt(i, 0).toString(), 0);
                      String prestamo = generales.validarID("Prestamos.txt", detalleCobro.split("~")[2]);
                      double balancePrestamo = Double.parseDouble(prestamo.split("~")[9]);
@@ -179,6 +198,10 @@ public class ProcesosCobros extends javax.swing.JFrame {
                                 prestamo.split("~")[6]+"~"+prestamo.split("~")[7]+"~"+prestamo.split("~")[8]+"~"+balancePrestamo+"~"+prestamo.split("~")[10]+"~"+prestamo.split("~")[11]+"~"+prestamo.split("~")[12];
                         generales.modificarPrestamos("Prestamos.txt",prestamo.split("~")[0], prestamo);
                   }
+                 
+                  JOptionPane.showMessageDialog(null,"Los cobros se ha actualizado correctamente.");
+                  DefaultTableModel  modelo =(DefaultTableModel) tablaCobros.getModel();
+                  modelo.setRowCount(0);
                 
     }//GEN-LAST:event_jButton1ActionPerformed
 
