@@ -362,6 +362,9 @@ public class MetodosGenerales {
         
     }
         
+        
+        
+        
         public ArrayList<String> LlenarTablaSocioActivo (String ruta){
         ArrayList<String> vector = new ArrayList();
         try {
